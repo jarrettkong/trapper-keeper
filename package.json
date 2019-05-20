@@ -24,11 +24,20 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"devDependencies": {
 		"enzyme": "^3.9.0",
-		"enzyme-adapter-react-16": "^1.13.1"
+		"enzyme-adapter-react-16": "^1.13.1",
+		"redux-devtools-extension": "^2.13.8"
 	}
 }

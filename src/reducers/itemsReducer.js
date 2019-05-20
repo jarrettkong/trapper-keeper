@@ -5,7 +5,7 @@ export const itemsReducer = (state, action) => {
 			return [...state, payload.item];
 		case 'TOGGLE_ITEM':
       // TBD
-			break;
+			return state;
 		case 'DELETE_ITEM':
 			return state.filter(item => item.id !== payload.id);
 		default:
