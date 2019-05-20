@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { rootReducer } from "./reducers";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App";
+import "normalize.css";
 import "./index.css";
 
 const store = createStore(rootReducer, composeWithDevTools());

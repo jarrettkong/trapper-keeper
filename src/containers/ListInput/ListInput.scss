@@ -6,7 +6,7 @@
   box-shadow: 1px 1px 5px grey;
   width: 350px;
   outline: none;
-  padding: 5px;
+  padding: 1.1rem;
 }
 
 input[name="title"] {
@@ -15,4 +15,6 @@ input[name="title"] {
 
 .list-items {
   border: 1px solid blue;
+  display: flex;
+  justify-content: space-between;
 }
