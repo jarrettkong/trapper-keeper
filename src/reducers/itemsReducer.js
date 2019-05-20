@@ -1,4 +1,6 @@
-export const itemsReducer = (state, action) => {
+const initialState = []
+
+export const itemsReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 	switch (type) {
 		case 'ADD_ITEM':

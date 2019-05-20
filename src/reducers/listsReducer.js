@@ -1,4 +1,6 @@
-export const listsReducer = (state, action) => {
+const initialState = [];
+
+export const listsReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 	switch (type) {
 		case 'ADD_LIST':
