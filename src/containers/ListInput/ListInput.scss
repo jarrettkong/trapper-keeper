@@ -1,0 +1,18 @@
+.ListInput {
+  display: flex;
+  flex-direction: column;
+  // border: 1px solid red;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px grey;
+  width: 350px;
+  outline: none;
+  padding: 5px;
+}
+
+input[name="title"] {
+  border: none;
+}
+
+.list-items {
+  border: 1px solid blue;
+}
