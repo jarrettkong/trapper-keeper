@@ -9,3 +9,12 @@ $darkFont: rgb(48, 48, 48);
   margin: 0.5rem;
   width: $width;
 }
+
+@mixin list-icon-styles {
+  margin: auto 0;
+  font-size: 22px;
+  color: $lightgrey;
+  &:hover {
+    color: $darkFont;
+  }
+}
