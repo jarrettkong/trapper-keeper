@@ -9,13 +9,15 @@
     margin: 0.7rem 0;
     padding: 0.4rem 1rem;
     border: none;
+    color: $darkFont;
     &:focus {
       outline: none;
     }
   }
-  textarea {
+  .input-list-item {
     width: 90%;
-    padding: 0.4rem 1rem;
+    padding: 0 1rem 0 0;
+    margin: 0;
     border: none;
     resize: none;
     overflow-y: auto;
@@ -26,6 +28,10 @@
   ::placeholder {
     font-weight: 700;
   }
+  i {
+    @include list-icon-styles;
+    padding-left: 0.8rem;
+  }
 }
 
 .active {
@@ -34,8 +40,8 @@
 }
 
 .inactive {
-  border-top: 1px solid fff;
-  border-bottom: 1px solid fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 
 .list-items {

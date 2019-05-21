@@ -14,17 +14,5 @@
     div {
       display: flex;
     }
-    li {
-      padding: 3px 3px 3px 6px;
-      color: $darkFont;
-    }
-    i {
-      margin: auto 0;
-      font-size: 20px;
-      color: $lightgrey;
-      &:hover {
-        color: $darkFont;
-      }
-    }
   }
 }
