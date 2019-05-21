@@ -1,0 +1,20 @@
+$lightgrey: rgb(145, 145, 145);
+$bordergrey: rgb(212, 212, 212);
+$darkFont: rgb(48, 48, 48);
+
+@mixin container-styling($width) {
+  border-radius: 5px;
+  border: 1px solid rgb(212, 212, 212);
+  box-shadow: 1px 1px 4px $lightgrey;
+  margin: 0.5rem;
+  width: $width;
+}
+
+@mixin list-icon-styles {
+  margin: auto 0;
+  font-size: 22px;
+  color: $lightgrey;
+  &:hover {
+    color: $darkFont;
+  }
+}

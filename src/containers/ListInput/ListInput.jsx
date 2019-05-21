@@ -21,6 +21,13 @@ class ListInput extends Component {
     this.setState({ activeInput: true });
   };
 
+  handleKeyPress = e => {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      console.log("Enter has been pressed");
+    }
+  };
+
   render() {
     return (
       <form action="" className="ListInput">
@@ -32,7 +39,9 @@ class ListInput extends Component {
           className="input-title"
         />
         <div className={`list-items ${this.state.isActive}`}>
-          <textarea
+          <i className="material-icons">crop_square</i>
+          <input
+            className="input-list-item"
             type="text"
             name="listItem"
             autoComplete="off"
@@ -40,6 +49,7 @@ class ListInput extends Component {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
+            onKeyPress={this.handleKeyPress}
           />
           {this.state.activeInput ? (
             <i className="material-icons">close</i>

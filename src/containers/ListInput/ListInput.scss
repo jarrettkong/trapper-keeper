@@ -1,24 +1,23 @@
+@import "../../variables.scss";
+
 .ListInput {
+  @include container-styling(700px);
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  box-shadow: 1px 1px 5px grey;
-  margin: 0.5rem;
-  width: 700px;
-  outline: none;
   input {
     font-size: 18px;
     margin: 0.7rem 0;
     padding: 0.4rem 1rem;
     border: none;
+    color: $darkFont;
     &:focus {
       outline: none;
     }
   }
-  textarea {
+  .input-list-item {
     width: 90%;
-    padding: 0.4rem 1rem;
+    padding: 0 1rem 0 0;
+    margin: 0;
     border: none;
     resize: none;
     overflow-y: auto;
@@ -29,16 +28,20 @@
   ::placeholder {
     font-weight: 700;
   }
+  i {
+    @include list-icon-styles;
+    padding-left: 0.8rem;
+  }
 }
 
 .active {
-  border-top: 1px solid lightgrey;
-  border-bottom: 1px solid lightgrey;
+  border-top: 1px solid $bordergrey;
+  border-bottom: 1px solid $bordergrey;
 }
 
 .inactive {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 
 .list-items {
@@ -69,6 +72,7 @@
   justify-content: flex-end;
   background-color: white;
   font-weight: 500;
+  color: $darkFont;
   &:hover {
     cursor: pointer;
     border-radius: 5px;

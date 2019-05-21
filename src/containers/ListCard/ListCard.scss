@@ -1,0 +1,18 @@
+@import "../../variables.scss";
+
+.ListCard {
+  @include container-styling(300px);
+  box-shadow: none;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 5px grey;
+  }
+  ul {
+    list-style-type: none;
+    margin: auto;
+    padding: 1rem;
+    div {
+      display: flex;
+    }
+  }
+}
