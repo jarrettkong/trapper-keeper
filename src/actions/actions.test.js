@@ -1,8 +1,7 @@
-import * as mockData from '../util/mockData';
+import { mockList, mockItem } from '../util/mockData';
 import * as actions from './index';
 
 describe('addList', () => {
-	const { mockList } = mockData;
 	it('should return an action object with type ADD_LIST and payload of a list object', () => {
 		const expected = {
 			type: 'ADD_LIST',
@@ -26,7 +25,6 @@ describe('deleteList', () => {
 
 describe('addItem', () => {
 	it('should return an action object with type ADD_ITEM and payload of an item object', () => {
-		const { mockItem } = mockData;
 		const expected = {
 			type: 'ADD_ITEM',
 			payload: { item: mockItem }
