@@ -6,12 +6,12 @@ class ListArea extends Component {
   render() {
     return (
       <div className="ListArea">
-        <div className="input-section">
+        <section className="input-section">
           <ListInput />
-        </div>
-        <div className="output-section">
+        </section>
+        <section className="output-section">
           <ListCard />
-        </div>
+        </section>
       </div>
     );
   }
