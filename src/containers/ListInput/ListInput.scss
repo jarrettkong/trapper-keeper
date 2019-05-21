@@ -1,20 +1,78 @@
 .ListInput {
   display: flex;
   flex-direction: column;
-  // border: 1px solid red;
   border-radius: 5px;
+  border: 1px solid lightgrey;
   box-shadow: 1px 1px 5px grey;
-  width: 350px;
+  margin: 0.5rem;
+  width: 700px;
   outline: none;
-  padding: 1.1rem;
+  input {
+    font-size: 18px;
+    margin: 0.7rem 0;
+    padding: 0.4rem 1rem;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  textarea {
+    width: 90%;
+    padding: 0.4rem 1rem;
+    border: none;
+    resize: none;
+    overflow-y: auto;
+    &:focus {
+      outline: none;
+    }
+  }
+  ::placeholder {
+    font-weight: 700;
+  }
 }
 
-input[name="title"] {
-  border: none;
+.active {
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+
+.inactive {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .list-items {
-  border: 1px solid blue;
   display: flex;
   justify-content: space-between;
+  align-content: center;
+  vertical-align: center;
+  margin: 1.2rem 0 0 0;
+  i {
+    align-self: center;
+    color: grey;
+    margin-right: 0.6rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid white;
+  justify-content: flex-end;
+  background-color: white;
+  font-weight: 500;
+  &:hover {
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid rgb(240, 240, 240);
+    background-color: rgb(240, 240, 240);
+  }
 }
