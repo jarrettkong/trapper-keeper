@@ -91,12 +91,20 @@
     padding: 5px 0;
   }
 
-  i {
-    align-self: center;
-    color: grey;
-    margin-right: 0.6rem;
-    &:hover {
-      cursor: pointer;
-    }
-  }
+	i {
+		align-self: center;
+		color: grey;
+		margin-right: 0.6rem;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	& .complete {
+		text-decoration: line-through;
+		color: $lightgrey;
+	}
+}
+
+.complete-notes {
+	border-top: 1px solid $bordergrey;
 }
