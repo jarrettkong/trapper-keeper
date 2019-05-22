@@ -22,8 +22,8 @@ class ListInput extends Component {
   };
 
   handleKeyPress = e => {
-    e.preventDefault();
     if (e.key === "Enter") {
+      e.preventDefault();
       console.log("Enter has been pressed");
     }
   };
