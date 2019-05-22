@@ -98,4 +98,12 @@
 			cursor: pointer;
 		}
 	}
+	& .complete {
+		text-decoration: line-through;
+		color: $lightgrey;
+	}
+}
+
+.complete-notes {
+	border-top: 1px solid $bordergrey;
 }

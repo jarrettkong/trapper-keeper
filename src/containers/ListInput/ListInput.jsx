@@ -28,8 +28,7 @@ export class ListInput extends Component {
 	};
 
 	handleKeyPress = e => {
-		if (e.key === 'Enter') {
-			e.preventDefault();
+		if (e.key === 'Enter' && this.state.mainInput) {
 			const newNote = { id: Date.now(), userTask: this.state.mainInput, complete: false };
 			this.setState({ notes: [...this.state.notes, newNote], mainInput: '' });
 			console.log('Enter has been pressed');
@@ -39,6 +38,15 @@ export class ListInput extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		console.log('submitted');
+	};
+
+	handleToggle = id => {
+		return () => {
+			const { notes } = this.state;
+			const note = notes.find(n => n.id === id);
+			note.complete = !note.complete;
+			this.setState({ notes });
+		};
 	};
 
 	handleUpdate = id => {
@@ -51,11 +59,24 @@ export class ListInput extends Component {
 	};
 
 	render() {
-		const existingNotes = this.state.notes.map(note => {
+		const incompleteNotes = this.state.notes.filter(n => !n.complete).map(note => {
 			return (
 				<div className="existing-note">
-					<i className="material-icons">crop_square</i>
+					<i className="material-icons" onClick={this.handleToggle(note.id)}>
+						crop_square
+					</i>
 					<input value={note.userTask} onChange={this.handleUpdate(note.id)} />
+				</div>
+			);
+		});
+
+		const completeNotes = this.state.notes.filter(n => n.complete).map(note => {
+			return (
+				<div className="existing-note">
+					<i className="material-icons" onClick={this.handleToggle(note.id)}>
+						check
+					</i>
+					<input className="complete" value={note.userTask} onChange={this.handleUpdate(note.id)} />
 				</div>
 			);
 		});
@@ -71,7 +92,8 @@ export class ListInput extends Component {
 					className="input-title"
 					onChange={this.handleChange}
 				/>
-				{existingNotes}
+				{incompleteNotes}
+				{completeNotes.length > 0 && <div className="complete-notes">{completeNotes}</div>}
 				<div className={`list-items ${this.state.isActive}`}>
 					<i className="material-icons">crop_square</i>
 					<input
