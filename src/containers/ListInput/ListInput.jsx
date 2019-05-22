@@ -5,27 +5,25 @@ import { addNewList } from '../../util/apiCalls';
 import './ListInput.scss';
 
 export class ListInput extends Component {
-  state = {
-    isActive: "inactive",
-    mainInput: "",
-    title: "",
-    notes: []
-  };
+	state = {
+		isActive: 'inactive',
+		mainInput: '',
+		title: '',
+		notes: []
+	};
 
-  handleFocus = () => {
-    this.setState({ isActive: "active" });
-  };
+	handleFocus = () => {
+		this.setState({ isActive: 'active' });
+	};
 
-  handleBlur = () => {
-    this.state.displayCloseIcon
-      ? this.setState({ isActive: "inactive" })
-      : this.setState({ isActive: "inactive" });
-  };
+	handleBlur = () => {
+		this.state.displayCloseIcon ? this.setState({ isActive: 'inactive' }) : this.setState({ isActive: 'inactive' });
+	};
 
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
+	handleChange = e => {
+		const { name, value } = e.target;
+		this.setState({ [name]: value });
+	};
 
 	handleKeyPress = e => {
 		if (e.key === 'Enter' && this.state.mainInput) {
@@ -37,7 +35,7 @@ export class ListInput extends Component {
 	handleSubmit = async () => {
 		const { title, notes } = this.state;
 		try {
-			const list = await addNewList({ title, notes });
+			const list = await addNewList({ title: title || 'Untitled List', notes });
 			this.props.addList(list);
 		} catch (err) {
 			console.log(err);
@@ -53,14 +51,14 @@ export class ListInput extends Component {
 		};
 	};
 
-  handleUpdate = id => {
-    return e => {
-      const { notes } = this.state;
-      const thing = notes.find(note => note.id === id);
-      thing.userTask = e.target.value;
-      this.setState({ notes });
-    };
-  };
+	handleUpdate = id => {
+		return e => {
+			const { notes } = this.state;
+			const thing = notes.find(note => note.id === id);
+			thing.userTask = e.target.value;
+			this.setState({ notes });
+		};
+	};
 
 	render() {
 		const incompleteNotes = this.state.notes.filter(n => !n.complete).map(note => {
@@ -113,12 +111,12 @@ export class ListInput extends Component {
 						onKeyPress={this.handleKeyPress}
 					/>
 					{this.state.mainInput.length > 0 ? (
-            <i className="material-icons">close</i>
-          ) : (
-            <i disabled={true} className="material-icons hidden">
-              close
-            </i>
-          )}
+						<i className="material-icons">close</i>
+					) : (
+						<i disabled={true} className="material-icons hidden">
+							close
+						</i>
+					)}
 				</div>
 				<div className="btn-container">
 					<div role="button" className="btn" onClick={this.handleSubmit}>
