@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { listsReducer } from './listsReducer';
-import { itemsReducer } from './itemsReducer';
+import { notesReducer } from './notesReducer';
 
 export const rootReducer = combineReducers({
-	ideas: listsReducer,
-	items: itemsReducer
+	lists: listsReducer,
+	notes: notesReducer
 });

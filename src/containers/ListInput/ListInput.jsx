@@ -1,25 +1,27 @@
-import React, { Component } from "react";
-import "./ListInput.scss";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addItem, addList } from '../../actions';
+import './ListInput.scss';
 
-class ListInput extends Component {
-  state = {
-    isActive: "inactive",
-    activeInput: false
-  };
+export class ListInput extends Component {
+	state = {
+		isActive: 'inactive',
+		activeInput: false
+	};
 
-  handleFocus = () => {
-    this.setState({ isActive: "active" });
-  };
+	handleFocus = () => {
+		this.setState({ isActive: 'active' });
+	};
 
-  handleBlur = () => {
-    this.state.activeInput
-      ? this.setState({ isActive: "inactive" })
-      : this.setState({ isActive: "inactive", activeInput: false });
-  };
+	handleBlur = () => {
+		this.state.activeInput
+			? this.setState({ isActive: 'inactive' })
+			: this.setState({ isActive: 'inactive', activeInput: false });
+	};
 
-  handleKeyDown = () => {
-    this.setState({ activeInput: true });
-  };
+	handleKeyDown = () => {
+		this.setState({ activeInput: true });
+	};
 
   handleKeyPress = e => {
     if (e.key === "Enter") {
@@ -64,4 +66,14 @@ class ListInput extends Component {
   }
 }
 
-export default ListInput;
+export const mapStateToProps = state => ({
+	lists: state.lists,
+	items: state.items
+});
+
+export const mapDispatchToProps = dispatch => ({
+	addList: dispatch(list => addList(list)),
+	addItem: dispatch(item => addItem(item))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListInput);
