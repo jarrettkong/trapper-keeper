@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { addNote, addList } from '../../actions';
+import { addList } from '../../actions';
+import { addNewList } from '../../util/apiCalls';
 import './ListInput.scss';
 
 export class ListInput extends Component {
@@ -31,13 +32,17 @@ export class ListInput extends Component {
 		if (e.key === 'Enter' && this.state.mainInput) {
 			const newNote = { id: Date.now(), userTask: this.state.mainInput, complete: false };
 			this.setState({ notes: [...this.state.notes, newNote], mainInput: '' });
-			console.log('Enter has been pressed');
 		}
 	};
 
-	handleSubmit = e => {
-		e.preventDefault();
-		console.log('submitted');
+	handleSubmit = async () => {
+		const { title, notes } = this.state;
+		try {
+			const list = await addNewList({ title, notes });
+			this.props.addList(list);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	handleToggle = id => {
@@ -61,7 +66,7 @@ export class ListInput extends Component {
 	render() {
 		const incompleteNotes = this.state.notes.filter(n => !n.complete).map(note => {
 			return (
-				<div className="existing-note">
+				<div key={note.id} className="existing-note">
 					<i className="material-icons" onClick={this.handleToggle(note.id)}>
 						crop_square
 					</i>
@@ -72,7 +77,7 @@ export class ListInput extends Component {
 
 		const completeNotes = this.state.notes.filter(n => n.complete).map(note => {
 			return (
-				<div className="existing-note">
+				<div key={note.id} className="existing-note">
 					<i className="material-icons" onClick={this.handleToggle(note.id)}>
 						check
 					</i>
@@ -82,7 +87,7 @@ export class ListInput extends Component {
 		});
 
 		return (
-			<form className="ListInput" onSubmit={this.handleSubmit}>
+			<form className="ListInput">
 				<input
 					type="text"
 					name="title"
@@ -111,9 +116,9 @@ export class ListInput extends Component {
 					{this.state.activeInput ? <i className="material-icons">close</i> : null}
 				</div>
 				<div className="btn-container">
-					<button type="submit" className="btn">
+					<div role="button" className="btn" onClick={this.handleSubmit}>
 						Save
-					</button>
+					</div>
 					{/* <button className="btn">Close</button> */}
 				</div>
 			</form>
@@ -121,14 +126,8 @@ export class ListInput extends Component {
 	}
 }
 
-export const mapStateToProps = state => ({
-	lists: state.lists,
-	items: state.items
-});
-
 export const mapDispatchToProps = dispatch => ({
-	// addList: dispatch(list => addList(list)),
-	// addNote: dispatch(item => addNote(item))
+	addList: list => dispatch(addList(list))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListInput);
+export default connect(null, mapDispatchToProps)(ListInput);
