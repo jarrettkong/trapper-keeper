@@ -1,15 +1,15 @@
-const initialState = []
+const initialState = [];
 
-export const itemsReducer = (state = initialState, action) => {
+export const notesReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 	switch (type) {
-		case 'ADD_ITEM':
-			return [...state, payload.item];
-		case 'TOGGLE_ITEM':
-      // TBD
+		case 'ADD_NOTE':
+			return [...state, payload.note];
+		case 'TOGGLE_NOTE':
+			// TBD
 			return state;
-		case 'DELETE_ITEM':
-			return state.filter(item => item.id !== payload.id);
+		case 'DELETE_NOTE':
+			return state.filter(note => note.id !== payload.id);
 		default:
 			return state;
 	}
