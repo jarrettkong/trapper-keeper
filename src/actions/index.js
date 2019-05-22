@@ -12,23 +12,23 @@ export const deleteList = id => {
 	};
 };
 
-export const addItem = item => {
+export const addNote = note => {
 	return {
-		type: 'ADD_ITEM',
-		payload: { item }
+		type: 'ADD_NOTE',
+		payload: { note }
 	};
 };
 
-export const toggleItem = id => {
+export const toggleNote = id => {
 	return {
-		type: 'TOGGLE_ITEM',
+		type: 'TOGGLE_NOTE',
 		payload: { id }
 	};
 };
 
-export const deleteItem = id => {
+export const deleteNote = id => {
 	return {
-		type: 'DELETE_ITEM',
+		type: 'DELETE_NOTE',
 		payload: { id }
 	};
 };
