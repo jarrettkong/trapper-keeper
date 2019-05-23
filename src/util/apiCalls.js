@@ -1,3 +1,11 @@
+export const getAllLists = async () => {
+	const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/lists`);
+	if (!res.ok) {
+		throw new Error('Could not get lists');
+	}
+	return await res.json();
+};
+
 export const addNewList = async list => {
 	const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/lists`, {
 		method: 'POST',
@@ -12,8 +20,8 @@ export const addNewList = async list => {
 
 export const getListData = async id => {
 	const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/lists/${id}`);
-	if(!res.ok) {
+	if (!res.ok) {
 		throw new Error('Could not fetch list with that id');
 	}
 	return await res.json();
-}
+};

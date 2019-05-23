@@ -12,23 +12,30 @@ export const deleteList = id => {
 	};
 };
 
-export const addNote = note => {
+export const addLists = lists => {
 	return {
-		type: 'ADD_NOTE',
-		payload: { note }
-	};
-};
+		type: 'ADD_LISTS',
+		payload: {lists}
+	}
+}
 
-export const toggleNote = id => {
-	return {
-		type: 'TOGGLE_NOTE',
-		payload: { id }
-	};
-};
+// export const addNote = note => {
+// 	return {
+// 		type: 'ADD_NOTE',
+// 		payload: { note }
+// 	};
+// };
 
-export const deleteNote = id => {
-	return {
-		type: 'DELETE_NOTE',
-		payload: { id }
-	};
-};
+// export const toggleNote = id => {
+// 	return {
+// 		type: 'TOGGLE_NOTE',
+// 		payload: { id }
+// 	};
+// };
+
+// export const deleteNote = id => {
+// 	return {
+// 		type: 'DELETE_NOTE',
+// 		payload: { id }
+// 	};
+// };
