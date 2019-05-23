@@ -7,7 +7,6 @@ import './ListInput.scss';
 export class ListInput extends Component {
 	state = {
 		isActive: 'inactive',
-		activeInput: false,
 		mainInput: '',
 		title: '',
 		notes: []
@@ -18,27 +17,25 @@ export class ListInput extends Component {
 	};
 
 	handleBlur = () => {
-		this.state.activeInput
-			? this.setState({ isActive: 'inactive' })
-			: this.setState({ isActive: 'inactive', activeInput: false });
+		this.state.displayCloseIcon ? this.setState({ isActive: 'inactive' }) : this.setState({ isActive: 'inactive' });
 	};
 
 	handleChange = e => {
 		const { name, value } = e.target;
-		this.setState({ activeInput: true, [name]: value });
+		this.setState({ [name]: value });
 	};
 
 	handleKeyPress = e => {
 		if (e.key === 'Enter' && this.state.mainInput) {
 			const newNote = { id: Date.now(), userTask: this.state.mainInput, complete: false };
-			this.setState({ notes: [...this.state.notes, newNote], mainInput: '' });
+			this.setState({ notes: [...this.state.notes, newNote], mainInput: '', displayCloseIcon: false });
 		}
 	};
 
 	handleSubmit = async () => {
 		const { title, notes } = this.state;
 		try {
-			const list = await addNewList({ title, notes });
+			const list = await addNewList({ title: title || 'Untitled List', notes });
       this.props.addList(list);
       this.setState({title: "", mainInput:"", notes: []})
 		} catch (err) {
@@ -114,7 +111,13 @@ export class ListInput extends Component {
 						onChange={this.handleChange}
 						onKeyPress={this.handleKeyPress}
 					/>
-					{this.state.activeInput ? <i className="material-icons">close</i> : null}
+					{this.state.mainInput.length > 0 ? (
+						<i className="material-icons">close</i>
+					) : (
+						<i disabled={true} className="material-icons hidden">
+							close
+						</i>
+					)}
 				</div>
 				<div className="btn-container">
 					<div role="button" className="btn" onClick={this.handleSubmit}>
