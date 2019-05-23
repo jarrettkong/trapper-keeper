@@ -1,5 +1,4 @@
 export const addNewList = async list => {
-  console.log("base url:", process.env.REACT_APP_BASE_URL)
 	const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/lists`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
