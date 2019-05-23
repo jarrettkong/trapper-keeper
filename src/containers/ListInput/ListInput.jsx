@@ -36,7 +36,8 @@ export class ListInput extends Component {
 		const { title, notes } = this.state;
 		try {
 			const list = await addNewList({ title: title || 'Untitled List', notes });
-			this.props.addList(list);
+      this.props.addList(list);
+      this.setState({title: "", mainInput:"", notes: []})
 		} catch (err) {
 			console.log(err);
 		}
@@ -122,7 +123,6 @@ export class ListInput extends Component {
 					<div role="button" className="btn" onClick={this.handleSubmit}>
 						Save
 					</div>
-					{/* <button className="btn">Close</button> */}
 				</div>
 			</form>
 		);
