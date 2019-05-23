@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import ListInput from '../ListInput/ListInput';
 import ListCard from '../ListCard/ListCard';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './ListArea.scss';
+
 class ListArea extends Component {
 	render() {
 		const { lists } = this.props;
 		const displayLists = lists.map(list => {
-			return <ListCard key={list.id} {...list} />;
+			return (
+				<Link to={`/notes/${list.id}`} key={list.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+					<ListCard {...list} />
+				</Link>
+			);
 		});
 		return (
 			<output className="ListArea">

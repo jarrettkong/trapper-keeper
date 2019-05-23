@@ -5,7 +5,7 @@ import ListInput from "../../containers/ListInput/ListInput";
 
 import { Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <main>
       <Route path="/" component={HomeScreen} />

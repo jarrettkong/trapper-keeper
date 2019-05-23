@@ -5,12 +5,12 @@ import ListInput from '../../containers/ListInput/ListInput';
 class HomeScreen extends Component {
 	render() {
 		return (
-			<section>
+			<Fragment>
 				<section className="input-section">
 					<ListInput />
 				</section>
 				<ListArea />
-			</section>
+			</Fragment>
 		);
 	}
 }
