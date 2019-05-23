@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addList } from '../../actions';
-import { addNewList } from '../../util/apiCalls';
+import { addNewList, getListData } from '../../util/apiCalls';
 import './ListInput.scss';
 
 export class ListInput extends Component {
 	state = {
 		isActive: 'inactive',
-		mainInput: '',
+		main: '',
 		title: '',
 		notes: []
+	};
+
+	componentDidMount() {
+		this.getExistingInfo();
+	}
+
+	getExistingInfo = async () => {
+		const { id } = this.props;
+		if (id) {
+			const list = await getListData(id);
+			const { title, notes } = list;
+			this.setState({ title, notes });
+		}
 	};
 
 	handleFocus = () => {
@@ -26,9 +39,9 @@ export class ListInput extends Component {
 	};
 
 	handleKeyPress = e => {
-		if (e.key === 'Enter' && this.state.mainInput) {
-			const newNote = { id: Date.now(), userTask: this.state.mainInput, complete: false };
-			this.setState({ notes: [...this.state.notes, newNote], mainInput: '', displayCloseIcon: false });
+		if (e.key === 'Enter' && this.state.main) {
+			const newNote = { id: Date.now(), userTask: this.state.main, complete: false };
+			this.setState({ notes: [...this.state.notes, newNote], main: '', displayCloseIcon: false });
 		}
 	};
 
@@ -36,8 +49,8 @@ export class ListInput extends Component {
 		const { title, notes } = this.state;
 		try {
 			const list = await addNewList({ title: title || 'Untitled List', notes });
-      this.props.addList(list);
-      this.setState({title: "", mainInput:"", notes: []})
+			this.props.addList(list);
+			this.setState({ title: '', main: '', notes: [] });
 		} catch (err) {
 			console.log(err);
 		}
@@ -102,8 +115,8 @@ export class ListInput extends Component {
 					<input
 						className="input-list-item"
 						type="text"
-						name="mainInput"
-						value={this.state.mainInput}
+						name="main"
+						value={this.state.main}
 						autoComplete="off"
 						placeholder="List item"
 						onFocus={this.handleFocus}
@@ -111,7 +124,7 @@ export class ListInput extends Component {
 						onChange={this.handleChange}
 						onKeyPress={this.handleKeyPress}
 					/>
-					{this.state.mainInput.length > 0 ? (
+					{this.state.main.length > 0 ? (
 						<i className="material-icons">close</i>
 					) : (
 						<i disabled={true} className="material-icons hidden">

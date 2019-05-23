@@ -10,7 +10,7 @@ const App = () => {
     <main>
       <Route path="/" component={HomeScreen} />
       <Route path="/new-note" component={ListInput} />
-      <Route path="/notes/:id" component={ListInput} />
+      <Route path="/notes/:id" component={({match}) => <ListInput id={match.params.id}/>} />
     </main>
   );
 }
