@@ -94,6 +94,11 @@ export class ListInput extends Component {
 		};
 	};
 
+	returnHome = e => {
+		const { classList } = e.target;
+		classList.contains('modal') && this.props.history.push('/');
+	};
+
 	render() {
 		const incompleteNotes = this.state.notes.filter(n => !n.complete).map(note => {
 			return (
@@ -118,7 +123,7 @@ export class ListInput extends Component {
 		});
 
 		return (
-			<div className="modal">
+			<div className="modal" onClick={this.returnHome}>
 				<form className="ListInput">
 					<input
 						type="text"
