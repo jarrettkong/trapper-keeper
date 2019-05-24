@@ -52,7 +52,7 @@ export class ListInput extends Component {
 		if (existing) {
 			const listToUpdate = { id, title, notes };
 			await this.updateList(listToUpdate);
-			actions.updateList(listToUpdate);
+			this.props.updateList(listToUpdate);
 		} else {
 			const listData = { title: title || 'Untitled List', notes };
 			await this.createNewList(listData);
@@ -176,7 +176,8 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-	addList: list => dispatch(actions.addList(list))
+	addList: list => dispatch(actions.addList(list)),
+	updateList: list => dispatch(actions.updateList(list))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListInput);
