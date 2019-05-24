@@ -25,31 +25,3 @@ export const addAllLists = lists => {
 		payload: { lists }
 	};
 };
-
-export const deleteCard = id => {
-	return {
-		type: 'DELETE_CARD',
-		payload: { id }
-	};
-};
-
-// export const addNote = note => {
-// 	return {
-// 		type: 'ADD_NOTE',
-// 		payload: { note }
-// 	};
-// };
-
-// export const toggleNote = id => {
-// 	return {
-// 		type: 'TOGGLE_NOTE',
-// 		payload: { id }
-// 	};
-// };
-
-// export const deleteCard = id => {
-// 	return {
-// 		type: 'DELETE_NOTE',
-// 		payload: { id }
-// 	};
-// };

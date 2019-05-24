@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from '../../components/ListItem/ListItem';
 import { Link } from 'react-router-dom';
-//redux
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import * as apiCalls from '../../util/apiCalls';
@@ -20,10 +19,10 @@ class ListCard extends Component {
 
 	render() {
 		const { title, notes } = this.props;
-
 		const displayNotes = notes.map(note => {
 			return <ListItem key={note.id} {...note} />;
 		});
+
 		return (
 			<article className="ListCard">
 				<h3>{title}</h3>
