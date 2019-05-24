@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addList } from '../../actions';
-import { addNewList, getListData } from '../../util/apiCalls';
+import { addNewList, getListData, updateList } from '../../util/apiCalls';
 import './ListInput.scss';
 
 export class ListInput extends Component {
@@ -45,12 +45,32 @@ export class ListInput extends Component {
 		}
 	};
 
-	handleSubmit = async () => {
+	handleSave = async () => {
+		const { lists, id } = this.props;
 		const { title, notes } = this.state;
+		const existing = lists.find(list => list.id === parseInt(id));
+		if (existing) {
+			await this.updateList(existing);
+			//update in redux
+		} else {
+			const listData = { title: title || 'Untitled List', notes };
+			await this.createNewList(listData);
+		}
+	};
+
+	createNewList = async listData => {
 		try {
-			const list = await addNewList({ title: title || 'Untitled List', notes });
+			const list = await addNewList(listData);
 			this.props.addList(list);
 			this.setState({ title: '', main: '', notes: [] });
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	updateList = async list => {
+		try {
+			await updateList(list);
 		} catch (err) {
 			console.log(err);
 		}
@@ -133,7 +153,7 @@ export class ListInput extends Component {
 					)}
 				</div>
 				<div className="btn-container">
-					<div role="button" className="btn" onClick={this.handleSubmit}>
+					<div role="button" className="btn" onClick={this.handleSave}>
 						Save
 					</div>
 				</div>
@@ -142,8 +162,12 @@ export class ListInput extends Component {
 	}
 }
 
+export const mapStateToProps = state => ({
+	lists: state.lists
+});
+
 export const mapDispatchToProps = dispatch => ({
 	addList: list => dispatch(addList(list))
 });
 
-export default connect(null, mapDispatchToProps)(ListInput);
+export default connect(mapStateToProps, mapDispatchToProps)(ListInput);
