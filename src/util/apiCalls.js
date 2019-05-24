@@ -35,5 +35,5 @@ export const updateList = async list => {
 	if (!res.ok) {
 		throw new Error('Could not update list');
 	}
-	return await res.json();
+	return res.json()
 };

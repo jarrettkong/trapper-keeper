@@ -50,12 +50,15 @@ export class ListInput extends Component {
 		const { title, notes } = this.state;
 		const existing = lists.find(list => list.id === parseInt(id));
 		if (existing) {
-			await this.updateList(existing);
+			console.log('updating');
+			const res = await this.updateList({ id, title, notes });
+			console.log(res);
 			//update in redux
 		} else {
 			const listData = { title: title || 'Untitled List', notes };
 			await this.createNewList(listData);
 		}
+		this.props.history.push('/');
 	};
 
 	createNewList = async listData => {
