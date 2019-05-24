@@ -5,17 +5,30 @@ export const addList = list => {
   };
 };
 
+export const updateList = list => {
+	return {
+		type: 'UPDATE_LIST',
+		payload: { list }
+	};
+};
+
+export const deleteList = id => {
+	return {
+		type: 'DELETE_LIST',
+		payload: { id }
+	};
+};
+
+export const addLists = lists => {
+	return {
+		type: 'ADD_LISTS',
+		payload: { lists }
+	};
+
 export const deleteCard = id => {
   return {
     type: "DELETE_CARD",
     payload: { id }
-  };
-};
-
-export const addLists = lists => {
-  return {
-    type: "ADD_LISTS",
-    payload: { lists }
   };
 };
 
