@@ -1,8 +1,8 @@
 export const addList = list => {
-  return {
-    type: "ADD_LIST",
-    payload: { list }
-  };
+	return {
+		type: 'ADD_LIST',
+		payload: { list }
+	};
 };
 
 export const updateList = list => {
@@ -24,12 +24,13 @@ export const addLists = lists => {
 		type: 'ADD_LISTS',
 		payload: { lists }
 	};
+};
 
 export const deleteCard = id => {
-  return {
-    type: "DELETE_CARD",
-    payload: { id }
-  };
+	return {
+		type: 'DELETE_CARD',
+		payload: { id }
+	};
 };
 
 // export const addNote = note => {

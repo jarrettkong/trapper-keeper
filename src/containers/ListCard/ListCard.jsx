@@ -3,17 +3,17 @@ import ListItem from "../../components/ListItem/ListItem";
 import { Link } from "react-router-dom";
 //redux
 import { connect } from "react-redux";
-import { deleteCard } from "../../actions";
-import { deleteList } from "../../util/apiCalls";
+import * as actions from "../../actions";
+import * as apiCalls from "../../util/apiCalls";
 
 import "./ListCard.scss";
 
 class ListCard extends Component {
-  deleteThisCard = async () => {
+  deleteList = async () => {
     console.log("card's id:", this.props.id);
     try {
-      await deleteList(this.props.id);
-      this.props.deleteCard(this.props.id);
+      await apiCalls.deleteList(this.props.id);
+      this.props.deleteList(this.props.id);
     } catch (err) {
       console.log(err);
     }
@@ -29,7 +29,7 @@ class ListCard extends Component {
       <article className="ListCard">
         <h3>{title}</h3>
         <ul>{displayNotes}</ul>
-        <button className="btn" onClick={this.deleteThisCard}>
+        <button className="btn" onClick={this.deleteList}>
           Delete
         </button>
         <Link
@@ -45,7 +45,7 @@ class ListCard extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  deleteCard: id => dispatch(deleteCard(id))
+  deleteList: id => dispatch(actions.deleteList(id))
 });
 
 export default connect(
