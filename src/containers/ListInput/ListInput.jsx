@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addList } from "../../actions";
-import { addNewList, getListData } from "../../util/apiCalls";
+import { addNewList, getListData, updateList } from "../../util/apiCalls";
 import "./ListInput.scss";
 
 export class ListInput extends Component {
@@ -55,12 +55,32 @@ export class ListInput extends Component {
     }
   };
 
-  handleSubmit = async () => {
+  handleSave = async () => {
+    const { lists, id } = this.props;
     const { title, notes } = this.state;
+    const existing = lists.find(list => list.id === parseInt(id));
+    if (existing) {
+      await this.updateList(existing);
+      //update in redux
+    } else {
+      const listData = { title: title || "Untitled List", notes };
+      await this.createNewList(listData);
+    }
+  };
+
+  createNewList = async listData => {
     try {
-      const list = await addNewList({ title: title || "Untitled List", notes });
+      const list = await addNewList(listData);
       this.props.addList(list);
       this.setState({ title: "", main: "", notes: [] });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  updateList = async list => {
+    try {
+      await updateList(list);
     } catch (err) {
       console.log(err);
     }
@@ -82,6 +102,11 @@ export class ListInput extends Component {
       thing.userTask = e.target.value;
       this.setState({ notes });
     };
+  };
+
+  returnHome = e => {
+    const { classList } = e.target;
+    classList.contains("modal") && this.props.history.push("/");
   };
 
   render() {
@@ -119,57 +144,63 @@ export class ListInput extends Component {
       });
 
     return (
-      <form className="ListInput">
-        <input
-          type="text"
-          name="title"
-          value={this.state.title}
-          autoComplete="off"
-          placeholder="Title"
-          className="input-title"
-          onChange={this.handleChange}
-        />
-        {incompleteNotes}
-        {completeNotes.length > 0 && (
-          <div className="complete-notes">{completeNotes}</div>
-        )}
-        <div className={`list-items ${this.state.isActive}`}>
-          <i className="material-icons">crop_square</i>
+      <div className="modal" onClick={this.returnHome}>
+        <form className="ListInput">
           <input
-            className="input-list-item"
             type="text"
-            name="main"
-            value={this.state.main}
+            name="title"
+            value={this.state.title}
             autoComplete="off"
-            placeholder="List item"
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            placeholder="Title"
+            className="input-title"
             onChange={this.handleChange}
-            onKeyPress={this.handleKeyPress}
           />
-          {this.state.main.length > 0 ? (
-            <i className="material-icons">close</i>
-          ) : (
-            <i disabled={true} className="material-icons hidden">
-              close
-            </i>
+          {incompleteNotes}
+          {completeNotes.length > 0 && (
+            <div className="complete-notes">{completeNotes}</div>
           )}
-        </div>
-        <div className="btn-container">
-          <div role="button" className="btn" onClick={this.handleSubmit}>
-            Save
+          <div className={`list-items ${this.state.isActive}`}>
+            <i className="material-icons">crop_square</i>
+            <input
+              className="input-list-item"
+              type="text"
+              name="main"
+              value={this.state.main}
+              autoComplete="off"
+              placeholder="List item"
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}
+            />
+            {this.state.main.length > 0 ? (
+              <i className="material-icons">close</i>
+            ) : (
+              <i disabled={true} className="material-icons hidden">
+                close
+              </i>
+            )}
           </div>
-        </div>
-      </form>
+          <div className="btn-container">
+            <div role="button" className="btn" onClick={this.handleSave}>
+              Save
+            </div>
+          </div>
+        </form>
+      </div>
     );
   }
 }
+
+export const mapStateToProps = state => ({
+  lists: state.lists
+});
 
 export const mapDispatchToProps = dispatch => ({
   addList: list => dispatch(addList(list))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ListInput);

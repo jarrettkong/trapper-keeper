@@ -3,10 +3,12 @@ import ListCard from "../ListCard/ListCard";
 import { getAllLists } from "../../util/apiCalls";
 import { addLists } from "../../actions";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import "./ListArea.scss";
 
 class ListArea extends Component {
+  state = {
+    banana: ""
+  };
   componentDidMount() {
     this.getExistingLists();
   }
@@ -16,10 +18,17 @@ class ListArea extends Component {
     this.props.addLists(lists);
   };
 
+  refreshPage = () => {
+    console.log("hello");
+    this.setState({ banana: Date.now() });
+  };
+
   render() {
     const { lists } = this.props;
     const displayLists = lists.map(list => {
-      return <ListCard {...list} key={list.id} />;
+      return (
+        <ListCard refreshPage={this.refreshPage} {...list} key={list.id} />
+      );
     });
     return (
       <output className="ListArea">

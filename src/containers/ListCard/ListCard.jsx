@@ -12,9 +12,8 @@ class ListCard extends Component {
   deleteThisCard = async () => {
     console.log("card's id:", this.props.id);
     try {
-      const res = await deleteList(this.props.id);
-      console.log(res);
-      this.props.This(this.props.id);
+      await deleteList(this.props.id);
+      this.props.deleteCard(this.props.id);
     } catch (err) {
       console.log(err);
     }
@@ -30,9 +29,9 @@ class ListCard extends Component {
       <article className="ListCard">
         <h3>{title}</h3>
         <ul>{displayNotes}</ul>
-        {/* <button className="btn" onClick={this.deleteThisCard}>
+        <button className="btn" onClick={this.deleteThisCard}>
           Delete
-        </button> */}
+        </button>
         <Link
           to={`/notes/${this.props.id}`}
           key={this.props.id}
