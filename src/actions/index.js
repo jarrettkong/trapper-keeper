@@ -19,9 +19,9 @@ export const deleteList = id => {
 	};
 };
 
-export const addLists = lists => {
+export const addAllLists = lists => {
 	return {
-		type: 'ADD_LISTS',
+		type: 'ADD_ALL_LISTS',
 		payload: { lists }
 	};
 };
