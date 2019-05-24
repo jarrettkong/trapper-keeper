@@ -1,23 +1,23 @@
 export const addList = list => {
-	return {
-		type: 'ADD_LIST',
-		payload: { list }
-	};
+  return {
+    type: "ADD_LIST",
+    payload: { list }
+  };
 };
 
-export const deleteList = id => {
-	return {
-		type: 'DELETE_LIST',
-		payload: { id }
-	};
+export const deleteCard = id => {
+  return {
+    type: "DELETE_CARD",
+    payload: { id }
+  };
 };
 
 export const addLists = lists => {
-	return {
-		type: 'ADD_LISTS',
-		payload: {lists}
-	}
-}
+  return {
+    type: "ADD_LISTS",
+    payload: { lists }
+  };
+};
 
 // export const addNote = note => {
 // 	return {
@@ -33,7 +33,7 @@ export const addLists = lists => {
 // 	};
 // };
 
-// export const deleteNote = id => {
+// export const deleteCard = id => {
 // 	return {
 // 		type: 'DELETE_NOTE',
 // 		payload: { id }
