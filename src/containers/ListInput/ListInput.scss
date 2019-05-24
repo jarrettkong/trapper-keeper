@@ -4,6 +4,7 @@
   @include container-styling(700px);
   display: flex;
   flex-direction: column;
+  background-color: white;
   input {
     font-size: 18px;
     margin: 0.7rem 0;
@@ -107,4 +108,17 @@
 
 .complete-notes {
 	border-top: 1px solid $bordergrey;
+}
+
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.75);
+  z-index: 5;
+  position: absolute;
+  overflow-x: scroll;
 }

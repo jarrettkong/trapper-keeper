@@ -118,46 +118,48 @@ export class ListInput extends Component {
 		});
 
 		return (
-			<form className="ListInput">
-				<input
-					type="text"
-					name="title"
-					value={this.state.title}
-					autoComplete="off"
-					placeholder="Title"
-					className="input-title"
-					onChange={this.handleChange}
-				/>
-				{incompleteNotes}
-				{completeNotes.length > 0 && <div className="complete-notes">{completeNotes}</div>}
-				<div className={`list-items ${this.state.isActive}`}>
-					<i className="material-icons">crop_square</i>
+			<div className="modal">
+				<form className="ListInput">
 					<input
-						className="input-list-item"
 						type="text"
-						name="main"
-						value={this.state.main}
+						name="title"
+						value={this.state.title}
 						autoComplete="off"
-						placeholder="List item"
-						onFocus={this.handleFocus}
-						onBlur={this.handleBlur}
+						placeholder="Title"
+						className="input-title"
 						onChange={this.handleChange}
-						onKeyPress={this.handleKeyPress}
 					/>
-					{this.state.main.length > 0 ? (
-						<i className="material-icons">close</i>
-					) : (
-						<i disabled={true} className="material-icons hidden">
-							close
-						</i>
-					)}
-				</div>
-				<div className="btn-container">
-					<div role="button" className="btn" onClick={this.handleSave}>
-						Save
+					{incompleteNotes}
+					{completeNotes.length > 0 && <div className="complete-notes">{completeNotes}</div>}
+					<div className={`list-items ${this.state.isActive}`}>
+						<i className="material-icons">crop_square</i>
+						<input
+							className="input-list-item"
+							type="text"
+							name="main"
+							value={this.state.main}
+							autoComplete="off"
+							placeholder="List item"
+							onFocus={this.handleFocus}
+							onBlur={this.handleBlur}
+							onChange={this.handleChange}
+							onKeyPress={this.handleKeyPress}
+						/>
+						{this.state.main.length > 0 ? (
+							<i className="material-icons">close</i>
+						) : (
+							<i disabled={true} className="material-icons hidden">
+								close
+							</i>
+						)}
 					</div>
-				</div>
-			</form>
+					<div className="btn-container">
+						<div role="button" className="btn" onClick={this.handleSave}>
+							Save
+						</div>
+					</div>
+				</form>
+			</div>
 		);
 	}
 }
