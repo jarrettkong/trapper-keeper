@@ -9,7 +9,7 @@ export const listsReducer = (state = initialState, action) => {
 			return [...state, payload.list];
 		case 'UPDATE_LIST':
 			const newState = [...state];
-			const index = newState.find(list => list.id === payload.list.id);
+			const index = newState.findIndex(list => list.id === payload.list.id);
 			newState.splice(index, 1, payload.list);
 			return newState;
 		case 'DELETE_LIST':

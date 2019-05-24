@@ -50,9 +50,8 @@ export class ListInput extends Component {
 		const { title, notes } = this.state;
 		const existing = lists.find(list => list.id === parseInt(id));
 		if (existing) {
-			const listToUpdate = { id, title, notes };
+			const listToUpdate = { id: parseInt(id), title, notes };
 			await this.updateList(listToUpdate);
-			this.props.updateList(listToUpdate);
 		} else {
 			const listData = { title: title || 'Untitled List', notes };
 			await this.createNewList(listData);
@@ -73,6 +72,7 @@ export class ListInput extends Component {
 	updateList = async list => {
 		try {
 			await apiCalls.updateList(list);
+			this.props.updateList(list);
 		} catch (err) {
 			console.log(err);
 		}
