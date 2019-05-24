@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addList } from '../../actions';
-import { addNewList, getListData, updateList } from '../../util/apiCalls';
+import * as actions from '../../actions';
+import * as apiCalls from '../../util/apiCalls';
 import './ListInput.scss';
 
 export class ListInput extends Component {
@@ -19,7 +19,7 @@ export class ListInput extends Component {
 	getExistingInfo = async () => {
 		const { id } = this.props;
 		if (id) {
-			const list = await getListData(id);
+			const list = await apiCalls.getListData(id);
 			const { title, notes } = list;
 			this.setState({ title, notes });
 		}
@@ -50,10 +50,9 @@ export class ListInput extends Component {
 		const { title, notes } = this.state;
 		const existing = lists.find(list => list.id === parseInt(id));
 		if (existing) {
-			console.log('updating');
-			const res = await this.updateList({ id, title, notes });
-			console.log(res);
-			//update in redux
+			const listToUpdate = { id, title, notes };
+			await this.updateList(listToUpdate);
+			actions.updateList(listToUpdate);
 		} else {
 			const listData = { title: title || 'Untitled List', notes };
 			await this.createNewList(listData);
@@ -63,7 +62,7 @@ export class ListInput extends Component {
 
 	createNewList = async listData => {
 		try {
-			const list = await addNewList(listData);
+			const list = await apiCalls.addNewList(listData);
 			this.props.addList(list);
 			this.setState({ title: '', main: '', notes: [] });
 		} catch (err) {
@@ -73,7 +72,7 @@ export class ListInput extends Component {
 
 	updateList = async list => {
 		try {
-			await updateList(list);
+			await apiCalls.updateList(list);
 		} catch (err) {
 			console.log(err);
 		}
@@ -177,7 +176,7 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-	addList: list => dispatch(addList(list))
+	addList: list => dispatch(actions.addList(list))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListInput);

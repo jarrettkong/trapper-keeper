@@ -5,6 +5,13 @@ export const addList = list => {
 	};
 };
 
+export const updateList = list => {
+	return {
+		type: 'UPDATE_LIST',
+		payload: { list }
+	};
+};
+
 export const deleteList = id => {
 	return {
 		type: 'DELETE_LIST',
@@ -15,9 +22,9 @@ export const deleteList = id => {
 export const addLists = lists => {
 	return {
 		type: 'ADD_LISTS',
-		payload: {lists}
-	}
-}
+		payload: { lists }
+	};
+};
 
 // export const addNote = note => {
 // 	return {
