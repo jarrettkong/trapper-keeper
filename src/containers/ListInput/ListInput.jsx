@@ -78,6 +78,13 @@ export class ListInput extends Component {
 		}
 	};
 
+	deleteNote = id => {
+		return () => {
+			const notes = this.state.notes.filter(note => note.id !== id);
+			this.setState({ notes });
+		};
+	};
+
 	handleToggle = id => {
 		return () => {
 			const { notes } = this.state;
@@ -109,6 +116,9 @@ export class ListInput extends Component {
 						crop_square
 					</i>
 					<input value={note.userTask} onChange={this.handleUpdate(note.id)} />
+					<i className="material-icons" onClick={this.deleteNote(note.id)}>
+						close
+					</i>
 				</div>
 			);
 		});
@@ -120,6 +130,9 @@ export class ListInput extends Component {
 						check
 					</i>
 					<input className="complete" value={note.userTask} onChange={this.handleUpdate(note.id)} />
+					<i className="material-icons" onClick={this.deleteNote(note.id)}>
+						close
+					</i>
 				</div>
 			);
 		});
