@@ -78,6 +78,13 @@ export class ListInput extends Component {
 		}
 	};
 
+	deleteNote = id => {
+		return () => {
+			const notes = this.state.notes.filter(note => note.id !== id);
+			this.setState({ notes });
+		};
+	};
+
 	handleToggle = id => {
 		return () => {
 			const { notes } = this.state;
@@ -109,6 +116,9 @@ export class ListInput extends Component {
 						crop_square
 					</i>
 					<input value={note.userTask} onChange={this.handleUpdate(note.id)} />
+					<i className="material-icons" onClick={this.deleteNote(note.id)}>
+						close
+					</i>
 				</div>
 			);
 		});
@@ -120,6 +130,9 @@ export class ListInput extends Component {
 						check
 					</i>
 					<input className="complete" value={note.userTask} onChange={this.handleUpdate(note.id)} />
+					<i className="material-icons" onClick={this.deleteNote(note.id)}>
+						close
+					</i>
 				</div>
 			);
 		});
@@ -153,7 +166,14 @@ export class ListInput extends Component {
 							onKeyPress={this.handleKeyPress}
 						/>
 						{this.state.main.length > 0 ? (
-							<i className="material-icons">close</i>
+							<i
+								className="material-icons"
+								onClick={() => {
+									this.setState({ main: '' });
+								}}
+							>
+								close
+							</i>
 						) : (
 							<i disabled={true} className="material-icons hidden">
 								close
@@ -172,7 +192,7 @@ export class ListInput extends Component {
 }
 
 export const mapStateToProps = state => ({
-  lists: state.lists
+	lists: state.lists
 });
 
 export const mapDispatchToProps = dispatch => ({
@@ -180,7 +200,4 @@ export const mapDispatchToProps = dispatch => ({
 	updateList: list => dispatch(actions.updateList(list))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListInput);
+export default connect(mapStateToProps, mapDispatchToProps)(ListInput);
