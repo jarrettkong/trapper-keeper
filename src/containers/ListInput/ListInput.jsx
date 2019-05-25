@@ -153,7 +153,14 @@ export class ListInput extends Component {
 							onKeyPress={this.handleKeyPress}
 						/>
 						{this.state.main.length > 0 ? (
-							<i className="material-icons">close</i>
+							<i
+								className="material-icons"
+								onClick={() => {
+									this.setState({ main: '' });
+								}}
+							>
+								close
+							</i>
 						) : (
 							<i disabled={true} className="material-icons hidden">
 								close
@@ -172,7 +179,7 @@ export class ListInput extends Component {
 }
 
 export const mapStateToProps = state => ({
-  lists: state.lists
+	lists: state.lists
 });
 
 export const mapDispatchToProps = dispatch => ({
@@ -180,7 +187,4 @@ export const mapDispatchToProps = dispatch => ({
 	updateList: list => dispatch(actions.updateList(list))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListInput);
+export default connect(mapStateToProps, mapDispatchToProps)(ListInput);
