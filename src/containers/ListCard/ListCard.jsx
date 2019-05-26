@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from '../../components/ListItem/ListItem';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-//redux
-=======
->>>>>>> cd2e4c22a5b26f3f70b2c85eb187e40df4e77fe8
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import * as apiCalls from '../../util/apiCalls';
@@ -13,10 +9,6 @@ import './ListCard.scss';
 
 class ListCard extends Component {
 	deleteList = async () => {
-<<<<<<< HEAD
-		console.log("card's id:", this.props.id);
-=======
->>>>>>> cd2e4c22a5b26f3f70b2c85eb187e40df4e77fe8
 		try {
 			await apiCalls.deleteList(this.props.id);
 			this.props.deleteList(this.props.id);
@@ -27,16 +19,6 @@ class ListCard extends Component {
 
 	render() {
 		const { title, notes } = this.props;
-<<<<<<< HEAD
-		const displayNotes = notes.map(note => {
-			return <ListItem key={note.id} {...note} />;
-		});
-
-		return (
-			<article className="ListCard">
-				<h3>{title}</h3>
-				<ul>{displayNotes}</ul>
-=======
 
 		const incompleteNotes = notes
 			.filter(n => !n.complete)
@@ -50,7 +32,6 @@ class ListCard extends Component {
 				<h3>{title}</h3>
 				<ul>{incompleteNotes}</ul>
 				<ul>{completeNotes}</ul>
->>>>>>> cd2e4c22a5b26f3f70b2c85eb187e40df4e77fe8
 				<button className="btn" onClick={this.deleteList}>
 					Delete
 				</button>

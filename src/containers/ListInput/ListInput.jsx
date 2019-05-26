@@ -31,9 +31,10 @@ export class ListInput extends Component {
 	};
 
 	handleKeyPress = e => {
+		const { main, notes } = this.state;
 		if (e.key === 'Enter' && this.state.main) {
-			const newNote = { id: Date.now(), userTask: this.state.main, complete: false };
-			this.setState({ notes: [...this.state.notes, newNote], main: '', displayCloseIcon: false });
+			const newNote = { id: Date.now(), userTask: main, complete: false };
+			this.setState({ notes: [...notes, newNote], main: '' });
 		}
 	};
 
@@ -77,20 +78,15 @@ export class ListInput extends Component {
 		};
 	};
 
-	handleToggle = id => {
-		return () => {
-			const { notes } = this.state;
-			const note = notes.find(n => n.id === id);
-			note.complete = !note.complete;
-			this.setState({ notes });
-		};
-	};
-
-	handleUpdate = id => {
+	modifyNote = (method, id) => {
+		const { notes } = this.state;
+		const note = notes.find(n => n.id === id);
 		return e => {
-			const { notes } = this.state;
-			const thing = notes.find(note => note.id === id);
-			thing.userTask = e.target.value;
+			if (method === 'toggle') {
+				note.complete = !note.complete;
+			} else if (method === 'update') {
+				note.userTask = e.target.value;
+			}
 			this.setState({ notes });
 		};
 	};
@@ -105,10 +101,10 @@ export class ListInput extends Component {
 		const incompleteNotes = notes.filter(n => !n.complete).map(note => {
 			return (
 				<div key={note.id} className="existing-note">
-					<i className="material-icons" onClick={this.handleToggle(note.id)}>
+					<i className="material-icons" onClick={this.modifyNote('toggle', note.id)}>
 						crop_square
 					</i>
-					<input value={note.userTask} onChange={this.handleUpdate(note.id)} />
+					<input value={note.userTask} onChange={this.modifyNote('update', note.id)} />
 					<i className="material-icons" onClick={this.deleteNote(note.id)}>
 						close
 					</i>
@@ -119,10 +115,10 @@ export class ListInput extends Component {
 		const completeNotes = notes.filter(n => n.complete).map(note => {
 			return (
 				<div key={note.id} className="existing-note">
-					<i className="material-icons" onClick={this.handleToggle(note.id)}>
+					<i className="material-icons" onClick={this.modifyNote('toggle', note.id)}>
 						check
 					</i>
-					<input className="complete" value={note.userTask} onChange={this.handleUpdate(note.id)} />
+					<input className="complete" value={note.userTask} onChange={this.modifyNote('update', note.id)} />
 					<i className="material-icons" onClick={this.deleteNote(note.id)}>
 						close
 					</i>
