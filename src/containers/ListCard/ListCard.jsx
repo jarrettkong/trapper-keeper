@@ -7,7 +7,7 @@ import * as apiCalls from '../../util/apiCalls';
 
 import './ListCard.scss';
 
-class ListCard extends Component {
+export class ListCard extends Component {
 	deleteList = async () => {
 		try {
 			await apiCalls.deleteList(this.props.id);
