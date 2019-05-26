@@ -32,7 +32,7 @@ export class ListInput extends Component {
 
 	handleKeyPress = e => {
 		const { main, notes } = this.state;
-		if (e.key === 'Enter' && this.state.main) {
+		if (e.key === 'Enter' && main) {
 			const newNote = { id: Date.now(), userTask: main, complete: false };
 			this.setState({ notes: [...notes, newNote], main: '' });
 		}

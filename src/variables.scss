@@ -12,7 +12,7 @@ $btnGreen: #00bb03;
 }
 
 @mixin list-icon-styles {
-	margin: auto 0;
+	margin: auto 5px auto 0;
 	font-size: 22px;
 	color: $lightgrey;
 	&:hover {

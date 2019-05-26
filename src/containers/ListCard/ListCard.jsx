@@ -35,7 +35,7 @@ class ListCard extends Component {
 				<button className="btn" onClick={this.deleteList}>
 					Delete
 				</button>
-				<Link to={`/notes/${this.props.id}`} key={this.props.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+				<Link to={`/notes/${this.props.id}`} key={this.props.id}>
 					<button className="btn">Edit</button>
 				</Link>
 			</article>
