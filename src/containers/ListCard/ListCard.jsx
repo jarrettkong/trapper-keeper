@@ -19,14 +19,19 @@ class ListCard extends Component {
 
 	render() {
 		const { title, notes } = this.props;
-		const displayNotes = notes.map(note => {
-			return <ListItem key={note.id} {...note} />;
-		});
+
+		const incompleteNotes = notes
+			.filter(n => !n.complete)
+			.map(note => <ListItem key={note.id} {...note} complete={false} />);
+		const completeNotes = notes
+			.filter(n => n.complete)
+			.map(note => <ListItem key={note.id} {...note} complete={true} />);
 
 		return (
 			<article className="ListCard">
 				<h3>{title}</h3>
-				<ul>{displayNotes}</ul>
+				<ul>{incompleteNotes}</ul>
+				<ul>{completeNotes}</ul>
 				<button className="btn" onClick={this.deleteList}>
 					Delete
 				</button>
