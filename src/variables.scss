@@ -7,7 +7,7 @@ $card-width: 310px;
 @mixin container-styling($width) {
 	border-radius: 5px;
 	border: 1px solid rgb(212, 212, 212);
-	box-shadow: 1px 1px 4px $lightgrey;
+	box-shadow: 0 0 4px $lightgrey;
 	width: $width;
 	padding: 10px;
 }

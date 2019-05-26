@@ -1,11 +1,12 @@
 export const mockNote = {
-	listId: 3,
+	id: Date.now(),
 	content: 'Hello, world!',
 	complete: false
 };
 
 export const mockList = {
-	id: 101,
 	title: 'My List',
-	items: []
+	notes: [mockNote, mockNote, mockNote]
 };
+
+export const mockLists = [mockList, mockList, mockList];
