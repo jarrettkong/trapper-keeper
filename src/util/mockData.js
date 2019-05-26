@@ -10,3 +10,7 @@ export const mockList = {
 };
 
 export const mockLists = [mockList, mockList, mockList];
+
+export const mockState = {
+	lists: mockLists
+}

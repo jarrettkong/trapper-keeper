@@ -5,7 +5,7 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import './ListArea.scss';
 
-class ListArea extends Component {
+export class ListArea extends Component {
 	componentDidMount() {
 		this.getExistingLists();
 	}
@@ -24,7 +24,7 @@ class ListArea extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
 	lists: state.lists
 });
 
