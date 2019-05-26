@@ -1,54 +1,50 @@
-import React, { Component } from "react";
-import ListItem from "../../components/ListItem/ListItem";
-import { Link } from "react-router-dom";
-//redux
-import { connect } from "react-redux";
-import * as actions from "../../actions";
-import * as apiCalls from "../../util/apiCalls";
+import React, { Component } from 'react';
+import ListItem from '../../components/ListItem/ListItem';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import * as apiCalls from '../../util/apiCalls';
 
-import "./ListCard.scss";
+import './ListCard.scss';
 
 class ListCard extends Component {
-  deleteList = async () => {
-    console.log("card's id:", this.props.id);
-    try {
-      await apiCalls.deleteList(this.props.id);
-      this.props.deleteList(this.props.id);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+	deleteList = async () => {
+		try {
+			await apiCalls.deleteList(this.props.id);
+			this.props.deleteList(this.props.id);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  render() {
-    const { title, notes } = this.props;
+	render() {
+		const { title, notes } = this.props;
 
-    const displayNotes = notes.map(note => {
-      return <ListItem key={note.id} {...note} />;
-    });
-    return (
-      <article className="ListCard">
-        <h3>{title}</h3>
-        <ul>{displayNotes}</ul>
-        <button className="btn" onClick={this.deleteList}>
-          Delete
-        </button>
-        <Link
-          to={`/notes/${this.props.id}`}
-          key={this.props.id}
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <button className="btn">Edit</button>
-        </Link>
-      </article>
-    );
-  }
+		const incompleteNotes = notes
+			.filter(n => !n.complete)
+			.map(note => <ListItem key={note.id} {...note} complete={false} />);
+		const completeNotes = notes
+			.filter(n => n.complete)
+			.map(note => <ListItem key={note.id} {...note} complete={true} />);
+
+		return (
+			<article className="ListCard">
+				<h3>{title}</h3>
+				<ul>{incompleteNotes}</ul>
+				<ul>{completeNotes}</ul>
+				<button className="btn" onClick={this.deleteList}>
+					Delete
+				</button>
+				<Link to={`/notes/${this.props.id}`} key={this.props.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+					<button className="btn">Edit</button>
+				</Link>
+			</article>
+		);
+	}
 }
 
 export const mapDispatchToProps = dispatch => ({
-  deleteList: id => dispatch(actions.deleteList(id))
+	deleteList: id => dispatch(actions.deleteList(id))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(ListCard);
+export default connect(null, mapDispatchToProps)(ListCard);

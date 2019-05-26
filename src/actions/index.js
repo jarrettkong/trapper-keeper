@@ -19,37 +19,9 @@ export const deleteList = id => {
 	};
 };
 
-export const addLists = lists => {
+export const addAllLists = lists => {
 	return {
-		type: 'ADD_LISTS',
+		type: 'ADD_ALL_LISTS',
 		payload: { lists }
 	};
 };
-
-export const deleteCard = id => {
-	return {
-		type: 'DELETE_CARD',
-		payload: { id }
-	};
-};
-
-// export const addNote = note => {
-// 	return {
-// 		type: 'ADD_NOTE',
-// 		payload: { note }
-// 	};
-// };
-
-// export const toggleNote = id => {
-// 	return {
-// 		type: 'TOGGLE_NOTE',
-// 		payload: { id }
-// 	};
-// };
-
-// export const deleteCard = id => {
-// 	return {
-// 		type: 'DELETE_NOTE',
-// 		payload: { id }
-// 	};
-// };

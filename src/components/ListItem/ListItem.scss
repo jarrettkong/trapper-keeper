@@ -1,23 +1,28 @@
 @import "../../variables.scss";
 
 .ListItem {
-  li {
-    padding: 3px 3px 3px 6px;
+	li {
+		padding: 3px 3px 3px 6px;
+		display: flex;
+		align-items: center;
+	}
+	i {
+		@include list-icon-styles;
+	}
+	.checked {
+		font-size: 20px;
+		padding-left: 2px;
   }
-  i {
-    @include list-icon-styles;
-  }
-  .checked {
-    font-size: 20px;
-    padding-left: 2px;
+  p {
+    margin: 0;
   }
 }
 
 .activeTask {
-  color: $darkFont;
+	color: $darkFont;
 }
 
-.completedTask {
-  text-decoration: line-through;
-  color: $lightgrey;
+.completedTask p {
+	text-decoration: line-through;
+	color: $lightgrey;
 }
