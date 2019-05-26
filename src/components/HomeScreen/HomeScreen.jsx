@@ -1,16 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import ListArea from '../../containers/ListArea/ListArea';
-// import ListInput from '../../containers/ListInput/ListInput';
+import './HomeScreen.scss';
 
 const HomeScreen = () => {
 	return (
-		<Fragment>
-			<Link to="/new-note">
-				<button>Add New List</button>
-			</Link>
+		<section className="HomeScreen">
+			<header>
+				<h1>TrapperKeeper</h1>
+				<Link to="/new-note">
+					<button>Add New List</button>
+				</Link>
+			</header>
 			<ListArea />
-		</Fragment>
+		</section>
 	);
 };
 

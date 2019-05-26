@@ -1,13 +1,7 @@
+@import '../../variables.scss';
+
 .ListArea {
-  min-height: 100vh;
-}
-
-.input-section {
-  display: flex;
-  justify-content: center;
-}
-
-.input-section,
-.output-section {
-  // border: 1px solid red;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, $card-width);
+  grid-gap: 20px;
 }

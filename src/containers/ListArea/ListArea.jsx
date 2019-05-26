@@ -20,11 +20,7 @@ class ListArea extends Component {
 		const displayLists = lists.map(list => {
 			return <ListCard {...list} key={list.id} />;
 		});
-		return (
-			<output className="ListArea">
-				<section className="output-section">{displayLists}</section>
-			</output>
-		);
+		return <output className="ListArea">{displayLists}</output>;
 	}
 }
 
