@@ -1,6 +1,6 @@
 export const mockNote = {
 	id: Date.now(),
-	content: 'Hello, world!',
+	userTask: 'Hello, world!',
 	complete: false
 };
 
