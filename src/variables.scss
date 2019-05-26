@@ -1,6 +1,7 @@
 $lightgrey: rgb(145, 145, 145);
 $bordergrey: rgb(212, 212, 212);
 $darkFont: rgb(48, 48, 48);
+$btnGreen: #00bb03;
 
 @mixin container-styling($width) {
 	border-radius: 5px;

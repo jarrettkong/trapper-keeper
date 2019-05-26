@@ -6,7 +6,7 @@ import './ListInput.scss';
 
 export class ListInput extends Component {
 	state = {
-		isActive: 'inactive',
+		isActive: false,
 		main: '',
 		title: '',
 		notes: []
@@ -23,14 +23,6 @@ export class ListInput extends Component {
 			const { title, notes } = list;
 			this.setState({ title, notes });
 		}
-	};
-
-	handleFocus = () => {
-		this.setState({ isActive: 'active' });
-	};
-
-	handleBlur = () => {
-		this.state.displayCloseIcon ? this.setState({ isActive: 'inactive' }) : this.setState({ isActive: 'inactive' });
 	};
 
 	handleChange = e => {
@@ -109,7 +101,8 @@ export class ListInput extends Component {
 	};
 
 	render() {
-		const incompleteNotes = this.state.notes.filter(n => !n.complete).map(note => {
+		const { title, isActive, main, notes } = this.state;
+		const incompleteNotes = notes.filter(n => !n.complete).map(note => {
 			return (
 				<div key={note.id} className="existing-note">
 					<i className="material-icons" onClick={this.handleToggle(note.id)}>
@@ -123,7 +116,7 @@ export class ListInput extends Component {
 			);
 		});
 
-		const completeNotes = this.state.notes.filter(n => n.complete).map(note => {
+		const completeNotes = notes.filter(n => n.complete).map(note => {
 			return (
 				<div key={note.id} className="existing-note">
 					<i className="material-icons" onClick={this.handleToggle(note.id)}>
@@ -143,7 +136,7 @@ export class ListInput extends Component {
 					<input
 						type="text"
 						name="title"
-						value={this.state.title}
+						value={title}
 						autoComplete="off"
 						placeholder="Title"
 						className="input-title"
@@ -151,21 +144,21 @@ export class ListInput extends Component {
 					/>
 					{incompleteNotes}
 					{completeNotes.length > 0 && <div className="complete-notes">{completeNotes}</div>}
-					<div className={`list-items ${this.state.isActive}`}>
+					<div className={`list-items ${isActive && 'active'}`}>
 						<i className="material-icons">crop_square</i>
 						<input
 							className="input-list-item"
 							type="text"
 							name="main"
-							value={this.state.main}
+							value={main}
 							autoComplete="off"
-							placeholder="List item"
-							onFocus={this.handleFocus}
-							onBlur={this.handleBlur}
+							placeholder="New Item"
+							onFocus={() => this.setState({ isActive: true })}
+							onBlur={() => this.setState({ isActive: false })}
 							onChange={this.handleChange}
 							onKeyPress={this.handleKeyPress}
 						/>
-						{this.state.main.length > 0 ? (
+						{main.length > 0 ? (
 							<i
 								className="material-icons"
 								onClick={() => {

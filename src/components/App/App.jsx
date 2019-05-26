@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom';
 
 const App = () => {
 	return (
-		<main>
+		<main className="App">
 			<Route path="/" component={HomeScreen} />
 			<Route path="/new-note" component={({ history }) => <ListInput history={history} />} />
 			<Route
