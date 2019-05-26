@@ -1,17 +1,23 @@
 @import '../../variables.scss';
 
 .HomeScreen {
-  min-height: 100vh;
-  max-width: 1300px;
-  margin: auto;
+	min-height: 100vh;
+	max-width: 1300px;
+	margin: auto;
 }
 
-.btn-area {
-	height: 300px;
+header {
+	height: 100px;
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
+
+	h1 {
+		margin: 0;
+		font-size: 50px;
+		font-weight: 300;
+	}
 
 	& button {
 		height: 50px;
@@ -21,11 +27,11 @@
 		border: 0;
 		color: white;
 		background-color: $btnGreen;
-    border-radius: 3px;
-    
-    &:hover {
-      cursor: pointer;
-      background-color: lighten($color: $btnGreen, $amount: 2%)
-    }
+		border-radius: 3px;
+
+		&:hover {
+			cursor: pointer;
+			background-color: lighten($color: $btnGreen, $amount: 2%);
+		}
 	}
 }
