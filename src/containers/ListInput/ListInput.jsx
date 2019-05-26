@@ -159,12 +159,7 @@ export class ListInput extends Component {
 							onKeyPress={this.handleKeyPress}
 						/>
 						{main.length > 0 ? (
-							<i
-								className="material-icons"
-								onClick={() => {
-									this.setState({ main: '' });
-								}}
-							>
+							<i className="material-icons" onClick={() => this.setState({ main: '' })}>
 								close
 							</i>
 						) : (
