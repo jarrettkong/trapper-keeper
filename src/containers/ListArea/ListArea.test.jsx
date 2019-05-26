@@ -47,7 +47,7 @@ describe('mapStateToProps', () => {
 });
 
 describe('mapDispatchToProps', () => {
-	it('should call dispatch with a addAllLists action when getExistingLists is called', async () => {
+	it('should call dispatch with an addAllLists action when getExistingLists is called', async () => {
 		const mockDispatch = jest.fn();
 		const actionToDispatch = addAllLists(mockLists);
 		const mappedProps = mapDispatchToProps(mockDispatch);
