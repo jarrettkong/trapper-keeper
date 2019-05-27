@@ -7,13 +7,17 @@ import * as apiCalls from '../../util/apiCalls';
 
 import './ListCard.scss';
 
-class ListCard extends Component {
+export class ListCard extends Component {
+	state = {
+		error: null
+	};
+
 	deleteList = async () => {
 		try {
 			await apiCalls.deleteList(this.props.id);
 			this.props.deleteList(this.props.id);
-		} catch (err) {
-			console.log(err);
+		} catch (error) {
+			this.setState({ error });
 		}
 	};
 
