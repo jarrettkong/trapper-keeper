@@ -1,17 +1,37 @@
 @import "../../variables.scss";
 
 .ListCard {
-	@include container-styling(calc($card-width + 10px));
-	box-shadow: none;
-	&:hover {
-		box-shadow: 1px 1px 5px grey;
-	}
-	ul {
-		list-style-type: none;
-		margin: auto;
-		padding: 0;
-		div {
-			display: flex;
-		}
-	}
+  @include container-styling(calc($card-width + 10px));
+  box-shadow: none;
+  &:hover {
+    box-shadow: 1px 1px 5px $boxShadow;
+  }
+  h3 {
+    margin: 0.3rem 0;
+    padding-left: 0.4rem;
+  }
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    padding-left: 0.2rem;
+    div {
+      display: flex;
+    }
+  }
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    border-top: 1px solid $bordergrey;
+    i {
+      color: rgb(54, 54, 54);
+      margin-top: 0.4rem;
+      font-size: 1.4rem;
+      &:hover {
+        color: $darkFont;
+      }
+    }
+  }
 }

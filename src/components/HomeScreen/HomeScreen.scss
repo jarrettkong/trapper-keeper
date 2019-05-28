@@ -1,37 +1,44 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .HomeScreen {
-	min-height: 100vh;
-	max-width: 1300px;
-	margin: auto;
+  min-height: 100vh;
+  max-width: 1300px;
+  margin: auto;
 }
 
 header {
-	height: 100px;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-	h1 {
-		margin: 0;
-		font-size: 50px;
-		font-weight: 300;
-	}
+  span {
+    font-weight: 600;
+    color: #fff;
+  }
 
-	& button {
-		height: 50px;
-		width: 200px;
-		font-size: 20px;
-		font-weight: 500;
-		border: 0;
-		color: white;
-		background-color: $btnGreen;
-		border-radius: 3px;
+  h1 {
+    margin: 0;
+    font-size: 50px;
+    font-weight: 300;
+    color: rgb(226, 226, 226);
+  }
 
-		&:hover {
-			cursor: pointer;
-			background-color: lighten($color: $btnGreen, $amount: 2%);
-		}
-	}
+  button {
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 0;
+    color: rgb(235, 235, 235);
+    background-color: rgb(32, 158, 0);
+    border: 1px solid rgb(22, 110, 0);
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 4px rgb(58, 58, 58);
+    }
+  }
 }
