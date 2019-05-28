@@ -112,11 +112,11 @@ export class ListInput extends Component {
 		const incompleteNotes = notes.filter(n => !n.complete).map(note => {
 			return (
 				<div key={note.id} className="existing-note">
-					<i className="material-icons" onClick={this.modifyNote('toggle', note.id)}>
+					<i className="material-icons toggle-icon" onClick={this.modifyNote('toggle', note.id)}>
 						crop_square
 					</i>
-					<input value={note.userTask} onChange={this.modifyNote('update', note.id)} />
-					<i className="material-icons" onClick={this.deleteNote(note.id)}>
+					<input className="existing-note-input" value={note.userTask} onChange={this.modifyNote('update', note.id)} />
+					<i className="material-icons delete-icon" onClick={this.deleteNote(note.id)}>
 						close
 					</i>
 				</div>
@@ -126,11 +126,15 @@ export class ListInput extends Component {
 		const completeNotes = notes.filter(n => n.complete).map(note => {
 			return (
 				<div key={note.id} className="existing-note">
-					<i className="material-icons" onClick={this.modifyNote('toggle', note.id)}>
+					<i className="material-icons toggle-icon" onClick={this.modifyNote('toggle', note.id)}>
 						check
 					</i>
-					<input className="complete" value={note.userTask} onChange={this.modifyNote('update', note.id)} />
-					<i className="material-icons" onClick={this.deleteNote(note.id)}>
+					<input
+						className="existing-note-input complete"
+						value={note.userTask}
+						onChange={this.modifyNote('update', note.id)}
+					/>
+					<i className="material-icons delete-icon" onClick={this.deleteNote(note.id)}>
 						close
 					</i>
 				</div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { ListInput } from './ListInput';
 import { shallow } from 'enzyme';
 import { getListData, addNewList, updateList } from '../../util/apiCalls';
-import { mockList, mockLists, mockHistory, mockNote } from '../../util/mockData';
+import { mockList, mockLists, mockHistory, mockNote, mockPartialCompleteList } from '../../util/mockData';
 
 jest.mock('../../util/apiCalls');
 
@@ -24,6 +24,49 @@ describe('ListInput', () => {
 
 	it('should match the snapshot', () => {
 		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('should match the snapshot if some items are complete', () => {
+		wrapper = shallow(<ListInput lists={[mockPartialCompleteList]} />);
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	it.skip('should call modifyNote if a note is changed', () => {
+		jest.spyOn(wrapper.instance(), 'modifyNote');
+		wrapper
+			.find('.existing-note-input')
+			.first()
+			.simulate('change');
+		expect(wrapper.instance().modifyNote).toHaveBeenCalled();
+	});
+
+	it.skip('should call modifyNote if a toggle icon is clicked', () => {
+		jest.spyOn(wrapper.instance(), 'modifyNote');
+		wrapper.find('.toggle-icon').simulate('click');
+		expect(wrapper.instance().modifyNote).toHaveBeenCalled();
+	});
+
+	it.skip('should call deleteNote if a delete icon is clicked', () => {
+		jest.spyOn(wrapper.instance(), 'deleteNote');
+		wrapper.find('.delete-icon').simulate('click');
+		expect(wrapper.instance().deleteNote).toHaveBeenCalled();
+	});
+
+	it('should set isActive to true on focus', () => {
+		wrapper.find('.input-list-item').simulate('focus');
+		expect(wrapper.state('isActive')).toEqual(true);
+	});
+
+	it.skip('should set isActive to true on focus', () => {
+		jest.spyOn(wrapper.instance(), 'saveNote');
+		wrapper.find('.input-list-item').simulate('blur');
+		expect(wrapper.instance().saveNote).toHaveBeenCalled();
+	});
+
+	it.skip('should call handleSave when save-btn is clicked', () => {
+		jest.spyOn(wrapper.instance(), 'handleSave');
+		wrapper.find('.save-btn').simulate('click');
+		expect(wrapper.instance().handleSave).toHaveBeenCalled();
 	});
 
 	describe('componentDidMount', () => {
@@ -114,6 +157,7 @@ describe('ListInput', () => {
 			wrapper.setState({ main: 'Test content' });
 			wrapper.instance().saveNote();
 			expect(wrapper.state('notes')).toHaveLength(1);
+			expect(wrapper.state('isActive')).toEqual(false);
 		});
 	});
 
@@ -200,9 +244,31 @@ describe('ListInput', () => {
 		});
 	});
 
+	describe('modifyNote', () => {
+		beforeEach(() => {
+			const mockNotes = [mockNote, { ...mockNote, id: 1 }, mockNote];
+			wrapper.setState({ notes: mockNotes });
+		});
+
+		it.skip('should toggle the note with the matching id', () => {
+			wrapper.instance().modifyNote('toggle', 1);
+			expect(wrapper.state('notes')).toEqual(expect.arrayContaining([{ ...mockNote, complete: true, id: 1 }]));
+		});
+
+		it.skip('should update the note with the matching id', () => {
+			const mockEvent = { target: { value: 'new value' } };
+			wrapper
+				.find('.existing-note')
+				.first()
+				.simulate('change', mockEvent);
+			expect(wrapper.state('notes')).toEqual(expect.arrayContaining([{ ...mockNote, userTask: 'new value' }]));
+		});
+	});
+
 	describe('returnHome', () => {
 		it.skip('should not call returnHome only if the .modal is clicked', () => {
 			jest.spyOn(wrapper.instance(), 'returnHome');
+			// ! this
 			const target = <div class="modal" />;
 			const mockEvent = { target };
 			wrapper.find('form').simulate('click');
