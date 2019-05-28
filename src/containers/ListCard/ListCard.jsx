@@ -37,12 +37,14 @@ export class ListCard extends Component {
         <h3>{title}</h3>
         <ul>{incompleteNotes}</ul>
         <ul>{completeNotes}</ul>
-        <button className="btn" onClick={this.deleteList}>
-          Delete
-        </button>
-        <Link to={`/notes/${this.props.id}`} key={this.props.id}>
-          <button className="btn">Edit</button>
-        </Link>
+        <div className="btn-container">
+          <i class="material-icons btn" onClick={this.deleteList}>
+            delete_forever
+          </i>
+          <Link to={`/notes/${this.props.id}`} key={this.props.id}>
+            <i class="material-icons btn ">create</i>
+          </Link>
+        </div>
       </article>
     );
   }
