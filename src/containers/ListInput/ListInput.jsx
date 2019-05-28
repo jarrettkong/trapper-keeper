@@ -9,7 +9,8 @@ export class ListInput extends Component {
 		isActive: false,
 		main: '',
 		title: '',
-		notes: []
+		notes: [],
+		error: ''
 	};
 
 	componentDidMount() {
@@ -19,9 +20,13 @@ export class ListInput extends Component {
 	getExistingInfo = async () => {
 		const { id } = this.props;
 		if (id) {
-			const list = await apiCalls.getListData(id);
-			const { title, notes } = list;
-			this.setState({ title, notes });
+			try {
+				const list = await apiCalls.getListData(id);
+				const { title, notes } = list;
+				this.setState({ title, notes, error: '' });
+			} catch (error) {
+				this.setState({ error: error.message });
+			}
 		}
 	};
 
@@ -31,11 +36,16 @@ export class ListInput extends Component {
 	};
 
 	handleKeyPress = e => {
-		const { main, notes } = this.state;
+		const { main } = this.state;
 		if (e.key === 'Enter' && main) {
-			const newNote = { id: Date.now(), userTask: main, complete: false };
-			this.setState({ notes: [...notes, newNote], main: '' });
+			this.saveNote();
 		}
+	};
+
+	saveNote = () => {
+		const { main, notes } = this.state;
+		const newNote = { id: Date.now(), userTask: main, complete: false };
+		this.setState({ notes: [...notes, newNote], main: '', isActive: false });
 	};
 
 	handleSave = async () => {
@@ -56,9 +66,9 @@ export class ListInput extends Component {
 		try {
 			const list = await apiCalls.addNewList(listData);
 			this.props.addList(list);
-			this.setState({ title: '', main: '', notes: [] });
-		} catch (err) {
-			console.log(err);
+			this.setState({ title: '', main: '', notes: [], error: '' });
+		} catch (error) {
+			this.setState({ error: error.message });
 		}
 	};
 
@@ -66,11 +76,12 @@ export class ListInput extends Component {
 		try {
 			await apiCalls.updateList(list);
 			this.props.updateList(list);
-		} catch (err) {
-			console.log(err);
+		} catch (error) {
+			this.setState({ error });
 		}
 	};
 
+	// TODO refactor to modifyNote
 	deleteNote = id => {
 		return () => {
 			const notes = this.state.notes.filter(note => note.id !== id);
@@ -150,7 +161,7 @@ export class ListInput extends Component {
 							autoComplete="off"
 							placeholder="New Item"
 							onFocus={() => this.setState({ isActive: true })}
-							onBlur={() => this.setState({ isActive: false })}
+							onBlur={this.saveNote}
 							onChange={this.handleChange}
 							onKeyPress={this.handleKeyPress}
 						/>
