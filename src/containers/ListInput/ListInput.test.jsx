@@ -192,11 +192,23 @@ describe('ListInput', () => {
 	});
 
 	describe('deleteNote', () => {
-		it('should remove the note with the corresponding id', () => {
+		it.skip('should remove the note with the corresponding id', () => {
 			const mockNotes = [mockNote, { ...mockNote, id: 1 }, mockNote];
 			wrapper.setState({ notes: mockNotes });
 			wrapper.instance().deleteNote(1);
 			expect(wrapper.state('notes')).toEqual(expect.not.arrayContaining([{ ...mockNote, id: 1 }]));
+		});
+	});
+
+	describe('returnHome', () => {
+		it.skip('should not call returnHome only if the .modal is clicked', () => {
+			jest.spyOn(wrapper.instance(), 'returnHome');
+			const target = <div class="modal" />;
+			const mockEvent = { target };
+			wrapper.find('form').simulate('click');
+			expect(wrapper.instance().returnHome).not.toHaveBeenCalled();
+			wrapper.find('.modal').simulate('click', mockEvent);
+			expect(wrapper.instance().returnHome).toHaveBeenCalled();
 		});
 	});
 });
