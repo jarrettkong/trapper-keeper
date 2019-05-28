@@ -34,7 +34,6 @@ export const deleteList = async id => {
 	if (!res.ok) {
 		throw new Error('Could not delete card');
 	}
-	res.sendStatus(204);
 };
 
 export const updateList = async list => {
@@ -46,5 +45,4 @@ export const updateList = async list => {
 	if (!res.ok) {
 		throw new Error('Could not update list');
 	}
-	res.sendStatus(204);
 };
