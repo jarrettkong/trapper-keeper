@@ -1,22 +1,27 @@
 $lightgrey: rgb(145, 145, 145);
 $bordergrey: rgb(212, 212, 212);
+$boxShadow: rgba(36, 36, 36, 0.87);
+$cardBackground: rgb(255, 255, 255);
 $darkFont: rgb(48, 48, 48);
-$btnGreen: #00bb03;
 $card-width: 310px;
 
 @mixin container-styling($width) {
-	border-radius: 5px;
-	border: 1px solid rgb(212, 212, 212);
-	box-shadow: 0 0 4px $lightgrey;
-	width: $width;
-	padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(212, 212, 212);
+  box-shadow: 0 0 5px $lightgrey;
+  background-color: $cardBackground;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: $width;
+  padding: 10px;
 }
 
 @mixin list-icon-styles {
-	margin: auto 5px auto 0;
-	font-size: 22px;
-	color: $lightgrey;
-	&:hover {
-		color: $darkFont;
-	}
+  margin: auto 5px auto 0;
+  font-size: 22px;
+  color: $lightgrey;
+  &:hover {
+    color: $darkFont;
+  }
 }
