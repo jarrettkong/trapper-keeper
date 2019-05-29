@@ -1,28 +1,28 @@
 @import "../../variables.scss";
 
 .ListItem {
-	display: flex;
-	align-items: flex-start;
-	word-wrap: break-word;
-	text-align: left;
-	i {
-		@include list-icon-styles;
-		margin: 5px 5px 0 0;
-	}
-	.checked {
-		font-size: 20px;
-		padding-left: 2px;
-	}
-	p {
-		margin: 3px 0;
-	}
+  display: flex;
+  align-items: flex-start;
+  word-wrap: break-word;
+  text-align: left;
+  i {
+    @include list-icon-styles;
+    margin: 2px 5px 0 0;
+  }
+  .checked {
+    font-size: 20px;
+    padding-left: 2px;
+  }
+  p {
+    margin: 3px 0;
+  }
 }
 
 .activeTask {
-	color: $darkFont;
+  color: $darkFont;
 }
 
 .completedTask p {
-	text-decoration: line-through;
-	color: $lightgrey;
+  text-decoration: line-through;
+  color: $lightgrey;
 }

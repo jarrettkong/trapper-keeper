@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
-import * as apiCalls from '../../util/apiCalls';
-import './ListInput.scss';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import * as actions from "../../actions";
+import * as apiCalls from "../../util/apiCalls";
+import "./ListInput.scss";
 
 export class ListInput extends Component {
 	state = {
@@ -188,15 +189,25 @@ export class ListInput extends Component {
 			</div>
 		);
 	}
+
 }
 
+ListInput.propTypes = {
+  addList: PropTypes.func,
+  updateList: PropTypes.func,
+  list: PropTypes.array
+};
+
 export const mapStateToProps = state => ({
-	lists: state.lists
+  lists: state.lists
 });
 
 export const mapDispatchToProps = dispatch => ({
-	addList: list => dispatch(actions.addList(list)),
-	updateList: list => dispatch(actions.updateList(list))
+  addList: list => dispatch(actions.addList(list)),
+  updateList: list => dispatch(actions.updateList(list))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListInput);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListInput);
