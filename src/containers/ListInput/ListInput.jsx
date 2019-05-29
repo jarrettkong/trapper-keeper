@@ -37,16 +37,17 @@ export class ListInput extends Component {
 	};
 
 	handleKeyPress = e => {
-		const { main } = this.state;
-		if (e.key === 'Enter' && main) {
+		if (e.key === 'Enter') {
 			this.saveNote();
 		}
 	};
 
 	saveNote = () => {
 		const { main, notes } = this.state;
-		const newNote = { id: Date.now(), userTask: main, complete: false };
-		this.setState({ notes: [...notes, newNote], main: '', isActive: false });
+		if (main) {
+			const newNote = { id: Date.now(), userTask: main, complete: false };
+			this.setState({ notes: [...notes, newNote], main: '', isActive: false });
+		}
 	};
 
 	handleSave = async () => {
