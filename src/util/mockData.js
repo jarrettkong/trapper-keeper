@@ -11,6 +11,7 @@ export const completeNote = {
 };
 
 export const mockList = {
+	id: 999,
 	title: 'My List',
 	notes: [mockNote, mockNote, mockNote]
 };
@@ -24,4 +25,8 @@ export const mockLists = [mockList, mockList, mockList];
 
 export const mockState = {
 	lists: mockLists
+};
+
+export const mockHistory = {
+	push: (path, state = ['/dir']) => state.push(path)
 };
