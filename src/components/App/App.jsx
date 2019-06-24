@@ -9,10 +9,10 @@ const App = () => {
 	return (
 		<main className="App">
 			<Route path="/" component={HomeScreen} />
-			<Route path="/new-note" component={({ history }) => <ListInput history={history} />} />
+			<Route path="/new-note" render={({ history }) => <ListInput history={history} />} />
 			<Route
 				path="/notes/:id"
-				component={({ match, history }) => <ListInput history={history} id={match.params.id} />}
+				render={({ match, history }) => <ListInput history={history} id={match.params.id} />}
 			/>
 		</main>
 	);

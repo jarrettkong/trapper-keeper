@@ -1,6 +1,7 @@
 {
 	"name": "trapper-keeper",
 	"version": "0.1.0",
+	"homepage": "https://jarrettkong.github.io/trapper-keeper",
 	"private": true,
 	"dependencies": {
 		"node-sass": "^4.12.0",
@@ -20,26 +21,21 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"lint": "eslint src/"
+		"lint": "eslint src/",
+		"deploy": "gh-pages -d build",
+		"predeploy": "npm run build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+		"production": [ ">0.2%", "not dead", "not op_mini all" ],
+		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
 	},
 	"devDependencies": {
 		"enzyme": "^3.9.0",
 		"enzyme-adapter-react-16": "^1.13.1",
+		"gh-pages": "^2.0.1",
 		"redux-devtools-extension": "^2.13.8"
 	}
 }
