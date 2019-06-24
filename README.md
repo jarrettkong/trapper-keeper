@@ -4,6 +4,8 @@ Trapper-Keeper simulates Google's Keep application. In this application a user h
 
 ## Screenshot
 
+The original design of the application was modeled after [Google Keep](https://keep.google.com/) itself, but additional styles were added to differentiate from it at the end.
+
 ![MainPage](https://i.imgur.com/eWRrwfC.png?1)
 
 ## Installation
