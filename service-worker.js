@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/trapper-keeper/precache-manifest.68b71e54996812858c7f00c3d3d3746f.js"
+  "/trapper-keeper/precache-manifest.1e1989ec3f7283427c72452594ef32c3.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fce609fe023ebe55e0ae5fad5e8f6d79",
+    "revision": "96067b59e3f8ba80659c2b6befbf3633",
     "url": "/trapper-keeper/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/trapper-keeper/static/css/2.764ccc25.chunk.css"
   },
   {
-    "revision": "c99e1672150f591fd09c",
-    "url": "/trapper-keeper/static/css/main.5b5bc92a.chunk.css"
+    "revision": "0aaae105da6c38bb4ee6",
+    "url": "/trapper-keeper/static/css/main.d6edc93e.chunk.css"
   },
   {
     "revision": "46f2b25f841d04aa0971",
     "url": "/trapper-keeper/static/js/2.81763f0e.chunk.js"
   },
   {
-    "revision": "c99e1672150f591fd09c",
+    "revision": "0aaae105da6c38bb4ee6",
     "url": "/trapper-keeper/static/js/main.b6abf493.chunk.js"
   },
   {
