@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/trapper-keeper/static/css/main.2413c2ac.chunk.css",
+    "main.css": "/trapper-keeper/static/css/main.5b5bc92a.chunk.css",
     "main.js": "/trapper-keeper/static/js/main.b6abf493.chunk.js",
     "main.js.map": "/trapper-keeper/static/js/main.b6abf493.chunk.js.map",
     "runtime~main.js": "/trapper-keeper/static/js/runtime~main.ecfdc985.js",
@@ -9,9 +9,9 @@
     "static/js/2.81763f0e.chunk.js": "/trapper-keeper/static/js/2.81763f0e.chunk.js",
     "static/js/2.81763f0e.chunk.js.map": "/trapper-keeper/static/js/2.81763f0e.chunk.js.map",
     "index.html": "/trapper-keeper/index.html",
-    "precache-manifest.db43b25709a6b10737ec5d5362826d73.js": "/trapper-keeper/precache-manifest.db43b25709a6b10737ec5d5362826d73.js",
+    "precache-manifest.68b71e54996812858c7f00c3d3d3746f.js": "/trapper-keeper/precache-manifest.68b71e54996812858c7f00c3d3d3746f.js",
     "service-worker.js": "/trapper-keeper/service-worker.js",
     "static/css/2.764ccc25.chunk.css.map": "/trapper-keeper/static/css/2.764ccc25.chunk.css.map",
-    "static/css/main.2413c2ac.chunk.css.map": "/trapper-keeper/static/css/main.2413c2ac.chunk.css.map"
+    "static/css/main.5b5bc92a.chunk.css.map": "/trapper-keeper/static/css/main.5b5bc92a.chunk.css.map"
   }
 }
