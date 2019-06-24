@@ -15,6 +15,8 @@ The original design of the application was modeled after [Google Keep](https://k
 - `npm install` the packages in both packages
 - `npm start` both apps separately
 
+To use the GitHub Pages version of the app, only run the back-end.
+
 ## Authors
 
 - Jarrett Kong - [Github]("https://github.com/jarrettkong")
